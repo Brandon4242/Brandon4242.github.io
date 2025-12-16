@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaesel & Brandon - Wedding Invitation</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
+        /* Custom utility for the background image and overlay */
+        .wedding-bg {
+            /* FIXED PATH: Uses the raw file name (1527.jpg) for reliable GitHub Pages deployment */
+            background-image: url('1527.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Makes the background scroll effect better */
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+            z-index: 1;
+        }
+
+        .content {
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Custom font classes */
+        .font-display { font-family: 'Playfair Display', serif; }
+        .font-body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="font-body bg-gray-50 text-gray-800">
+
+    <!-- Language Toggle (FIXED AT TOP RIGHT) -->
+    <div class="fixed top-4 right-4 z-50 bg-black/20 backdrop-blur-sm rounded-full p-1 shadow-xl">
+        <div class="flex justify-center">
+            <button id="lang-en-toggle" class="lang-toggle px-4 py-1 text-sm rounded-l-full font-bold transition bg-pink-600 text-white">EN</button>
+            <button id="lang-es-toggle" class="lang-toggle px-4 py-1 text-sm rounded-r-full font-bold transition bg-gray-300 text-gray-800 hover:bg-gray-400">ES</button>
+        </div>
+    </div>
+    
+    <!-- Hero Section with Background Image and Countdown -->
+    <section class="wedding-bg min-h-screen flex items-center justify-center p-4">
+        <div class="overlay"></div>
+        <div class="content text-white text-center w-full max-w-4xl space-y-8">
+            
+            <!-- Main Title (Toggled) -->
+            <div id="hero-title-en">
+                <h1 class="text-4xl sm:text-7xl font-display font-bold tracking-wider animate-pulse">Jaesel & Brandon</h1>
+                <h2 class="text-2xl sm:text-4xl font-display mt-2">Are Getting Married!</h2>
+            </div>
+            <div id="hero-title-es" class="hidden">
+                <h1 class="text-4xl sm:text-7xl font-display font-bold tracking-wider animate-pulse">Jaesel & Brandon</h1>
+                <h2 class="text-2xl sm:text-4xl font-display mt-2">¡Se Van a Casar!</h2>
+            </div>
+
+
+            <!-- Countdown Timer with Background Image -->
+            <div id="countdown" class="bg-cover bg-center p-4 sm:p-8 rounded-xl shadow-2xl mx-auto max-w-lg mt-6 overflow-hidden relative text-white" style="background-image: url('1527.jpg');">
+                <!-- Overlay for better text readability against the background image -->
+                <div class="absolute inset-0 bg-black/40 backdrop-blur-sm z-0"></div>
+                <div class="relative z-10">
+                    <p class="text-lg sm:text-xl font-semibold mb-4">
+                        <span id="countdown-label-en">The Big Day:</span>
+                        <span id="countdown-label-es" class="hidden">El Gran Día:</span>
+                    </p>
+                    <div class="flex justify-center space-x-2 sm:space-x-4">
+                        
+                        <div class="countdown-item">
+                            <span id="days" class="text-3xl sm:text-5xl font-bold font-display block">00</span>
+                            <span class="text-xs sm:text-sm uppercase tracking-widest opacity-75">
+                                <span id="days-en">Days</span><span id="days-es" class="hidden">Días</span>
+                            </span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="hours" class="text-3xl sm:text-5xl font-bold font-display block">00</span>
+                            <span class="text-xs sm:text-sm uppercase tracking-widest opacity-75">
+                                <span id="hours-en">Hours</span><span id="hours-es" class="hidden">Horas</span>
+                            </span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="minutes" class="text-3xl sm:text-5xl font-bold font-display block">00</span>
+                            <span class="text-xs sm:text-sm uppercase tracking-widest opacity-75">
+                                <span id="minutes-en">Minutes</span><span id="minutes-es" class="hidden">Minutos</span>
+                            </span>
+                        </div>
+                        <div class="countdown-item">
+                            <span id="seconds" class="text-3xl sm:text-5xl font-bold font-display block">00</span>
+                            <span class="text-xs sm:text-sm uppercase tracking-widest opacity-75">
+                                <span id="seconds-en">Seconds</span><span id="seconds-es" class="hidden">Segundos</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Date (Toggled) -->
+            <p class="text-xl sm:text-2xl font-body pt-8">
+                <span id="date-en">October 19, 2026</span>
+                <span id="date-es" class="hidden">19 de Octubre, 2026</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Venue and Time Section -->
+    <section class="py-16 px-4 text-center bg-white">
+        <div class="max-w-3xl mx-auto space-y-8">
+            
+            <!-- Section Title (Toggled) -->
+            <h3 class="text-3xl font-display font-bold text-pink-600">
+                <span id="venue-title-en">The Ceremony & Reception</span>
+                <span id="venue-title-es" class="hidden">La Ceremonia y Recepción</span>
+            </h3>
+
+            <div class="flex flex-col sm:flex-row justify-center items-start sm:space-x-8 space-y-8 sm:space-y-0">
+                
+                <!-- Venue Details -->
+                <div class="w-full sm:w-1/2 p-6 rounded-xl shadow-lg bg-pink-50 border border-pink-200">
+                    <i data-lucide="map-pin" class="h-8 w-8 text-pink-600 mx-auto mb-3"></i>
+                    <h4 class="text-xl font-semibold font-display mb-2">
+                        <span id="location-title-en">Location</span>
+                        <span id="location-title-es" class="hidden">Ubicación</span>
+                    </h4>
+                    <p class="text-lg">Rainbow Garden</p>
+                    <p class="text-sm text-gray-600">3150 Paradise Rd, Las Vegas, NV 89109</p>
+                </div>
+
+                <!-- Time Details (4:00 PM) -->
+                <div class="w-full sm:w-1/2 p-6 rounded-xl shadow-lg bg-pink-50 border border-pink-200">
+                    <i data-lucide="clock" class="h-8 w-8 text-pink-600 mx-auto mb-3"></i>
+                    <h4 class="text-xl font-semibold font-display mb-2">
+                        <span id="time-title-en">Time</span>
+                        <span id="time-title-es" class="hidden">Hora</span>
+                    </h4>
+                    <p class="text-lg">4:00 PM</p>
+                    <p class="text-sm text-gray-600">
+                        <span id="cocktail-en"></span>
+                        <span id="cocktail-es" class="hidden"></span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- RSVP Button (Placeholder for external link or form) -->
+            <a href="#" class="inline-block mt-8 px-8 py-3 bg-pink-600 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-pink-700 transition duration-300 transform hover:scale-105">
+                <span id="rsvp-en">RSVP Now</span>
+                <span id="rsvp-es" class="hidden">Confirmar Asistencia</span>
+                <i data-lucide="arrow-right" class="inline-block w-4 h-4 ml-2"></i>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Ground Rules Section (Dual Language) -->
+    <section class="py-16 px-4 text-center bg-gray-200">
+        <div class="max-w-4xl mx-auto space-y-8">
+            <h3 class="text-3xl font-display font-bold text-pink-700 mb-6">
+                <span id="rules-title-en">Important Details & Ground Rules</span>
+                <span id="rules-title-es" class="hidden">Detalles Importantes y Reglas Básicas</span>
+            </h3>
+
+            <!-- English Rules -->
+            <div id="rules-en" class="rules-language-content">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="p-5 bg-white rounded-xl shadow-lg border-t-4 border-pink-500 space-y-2">
+                        <i data-lucide="shirt" class="h-8 w-8 text-pink-600 mx-auto mb-2"></i>
+                        <h4 class="text-xl font-semibold font-display mb-1">Dress Code</h4>
+                        <p class="text-sm text-gray-700 font-bold">Suit and Tie Event</p>
+                        <p class="text-xs text-gray-500">(Formal/Semi-Formal Attire)</p>
+                    </div>
+
+                    <div class="p-5 bg-white rounded-xl shadow-lg border-t-4 border-pink-500 space-y-2">
+                        <i data-lucide="beer" class="h-8 w-8 text-pink-600 mx-auto mb-2"></i>
+                        <h4 class="text-xl font-semibold font-display mb-1">Bar Policy</h4>
+                        <p class="text-sm text-gray-700 font-bold">Soda Bar Only</p>
+                        <p class="text-xs text-gray-500">(No outside alcohol. Hard liquor/beer must be purchased at the venue bar.)</p>
+                    </div>
+                    
+                    <div class="p-5 bg-white rounded-xl shadow-lg border-t-4 border-pink-500 space-y-2">
+                        <i data-lucide="user-check" class="h-8 w-8 text-pink-600 mx-auto mb-2"></i>
+                        <h4 class="text-xl font-semibold font-display mb-1">Children</h4>
+                        <p class="text-sm text-gray-700 font-bold">Kids Welcome!</p>
+                        <p class="text-xs text-gray-500">(Must be at parents' sight at all times for safety.)</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Spanish Rules -->
+            <div id="rules-es" class="rules-language-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="p-5 bg-white rounded-xl shadow-lg border-t-4 border-pink-500 space-y-2">
+                        <i data-lucide="shirt" class="h-8 w-8 text-pink-600 mx-auto mb-2"></i>
+                        <h4 class="text-xl font-semibold font-display mb-1">Código de Vestimenta</h4>
+                        <p class="text-sm text-gray-700 font-bold">Evento de Traje y Corbata</p>
+                        <p class="text-xs text-gray-500">(Atuendo Formal/Semi-Formal)</p>
+                    </div>
+
+                    <div class="p-5 bg-white rounded-xl shadow-lg border-t-4 border-pink-500 space-y-2">
+                        <i data-lucide="beer" class="h-8 w-8 text-pink-600 mx-auto mb-2"></i>
+                        <h4 class="text-xl font-semibold font-display mb-1">Política del Bar</h4>
+                        <p class="text-sm text-gray-700 font-bold">Solo Barra de Refrescos</p>
+                        <p class="text-xs text-gray-500">(No se permite alcohol externo. Las bebidas alcohólicas deben comprarse en el bar del local.)</p>
+                    </div>
+                    
+                    <div class="p-5 bg-white rounded-xl shadow-lg border-t-4 border-pink-500 space-y-2">
+                        <i data-lucide="user-check" class="h-8 w-8 text-pink-600 mx-auto mb-2"></i>
+                        <h4 class="text-xl font-semibold font-display mb-1">Niños</h4>
+                        <p class="text-sm text-gray-700 font-bold">¡Niños Bienvenidos!</p>
+                        <p class="text-xs text-gray-500">(Deben estar bajo la supervisión de los padres en todo momento por seguridad.)</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Honeymoon/Wedding Fund Donation System (Dual Language with Zelle/Cash App/ATH Móvil) -->
+    <section class="py-16 px-4 bg-gray-100 text-center">
+        <div class="max-w-3xl mx-auto space-y-6">
+            <i data-lucide="heart" class="h-10 w-10 text-pink-600 mx-auto mb-2"></i>
+            
+            <div class="bg-white p-6 rounded-xl shadow-xl border border-gray-200">
+
+                <!-- English Content -->
+                <div id="fund-en" class="fund-language-content">
+                    <h3 class="text-3xl font-display font-bold text-gray-800">Honeymoon & Wedding Fund</h3>
+                    <p class="text-gray-600 mb-6">Your presence is the only gift we need! If you still wish to contribute to our journey, any gift towards our honeymoon adventure or wedding expenses would be deeply appreciated. Below are the preferred methods.</p>
+                    
+                    <h4 class="text-xl font-semibold mb-4 text-pink-600">Suggested Contributions (Optional)</h4>
+                    <div class="flex flex-wrap justify-center gap-3 mb-8">
+                        <span class="px-4 py-2 rounded-lg font-semibold bg-pink-100 text-pink-600 border border-pink-300">$25</span>
+                        <span class="px-4 py-2 rounded-lg font-semibold bg-pink-100 text-pink-600 border border-pink-300">$50</span>
+                        <span class="px-4 py-2 rounded-lg font-semibold bg-pink-100 text-pink-600 border border-pink-300">$100</span>
+                        <span class="px-4 py-2 rounded-lg font-semibold bg-pink-100 text-pink-600 border border-pink-300">$200</span>
+                    </div>
+
+                    <h4 class="text-2xl font-display font-bold text-gray-800 border-b pb-2 mb-4">Digital Payment Methods</h4>
+                    
+                    <div class="text-left space-y-4">
+                        <div class="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="text-lg font-semibold text-pink-600 flex items-center mb-1"><i data-lucide="smartphone" class="w-5 h-5 mr-2"></i> Zelle</p>
+                            <!-- Zelle: Two phone numbers -->
+                            <p class="text-sm text-gray-700">Transfer to Phone: <strong class="text-gray-800 break-all">813-360-4661</strong> or <strong class="text-gray-800 break-all">813-858-9193</strong></p>
+                        </div>
+                        
+                        <!-- Cash App (UPDATED with link and specific Cashtag) -->
+                        <div class="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="text-lg font-semibold text-pink-600 flex items-center mb-1"><i data-lucide="credit-card" class="w-5 h-5 mr-2"></i> Cash App</p>
+                            <p class="text-sm text-gray-700">Cashtag: <strong class="text-gray-800 break-all">$TeeRizzley0</strong></p>
+                            <a href="https://cash.app/$TeeRizzley0" target="_blank" class="mt-2 inline-block px-4 py-2 bg-green-500 text-white font-bold text-sm rounded-lg hover:bg-green-600 transition">
+                                Send via Cash App
+                            </a>
+                        </div>
+
+                        <!-- ATH Móvil Section (English) -->
+                        <div class="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="text-lg font-semibold text-pink-600 flex items-center mb-1"><i data-lucide="wallet" class="w-5 h-5 mr-2"></i> ATH Móvil</p>
+                            <p class="text-sm text-gray-700">Transfer to Phone: <strong class="text-gray-800 break-all">939-330-7158</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spanish Content -->
+                <div id="fund-es" class="fund-language-content hidden">
+                    <h3 class="text-3xl font-display font-bold text-gray-800">Fondo para Luna de Miel y Boda</h3>
+                    <p class="text-gray-600 mb-6">¡Su presencia es el único regalo que necesitamos! Si aún desean contribuir a nuestro viaje, cualquier obsequio para nuestra aventura de luna de miel o gastos de boda será profundamente apreciado. Abajo están los métodos preferidos.</p>
+                    
+                    <h4 class="text-xl font-semibold mb-4 text-pink-600">Sugerencias de Contribución (Opcional)</h4>
+                    <div class="flex flex-wrap justify-center gap-3 mb-8">
+                        <span class="px-4 py-2 rounded-lg font-semibold bg-pink-100 text-pink-600 border border-pink-300">$25</span>
+                        <span class="px-4 py-2 rounded-lg font-semibold bg-pink-100 text-pink-600 border border-pink-300">$50</span>
+                        <span class="px-4 py-2 rounded-lg font-semibold bg-pink-100 text-pink-600 border border-pink-300">$100</span>
+                        <span class="px-4 py-2 rounded-lg font-semibold bg-pink-100 text-pink-600 border border-pink-300">$200</span>
+                    </div>
+
+                    <h4 class="text-2xl font-display font-bold text-gray-800 border-b pb-2 mb-4">Métodos de Pago Digitales</h4>
+                    
+                    <div class="text-left space-y-4">
+                        <div class="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="text-lg font-semibold text-pink-600 flex items-center mb-1"><i data-lucide="smartphone" class="w-5 h-5 mr-2"></i> Zelle</p>
+                            <!-- Zelle: Two phone numbers -->
+                            <p class="text-sm text-gray-700">Transferir a Teléfono: <strong class="text-gray-800 break-all">813-360-4661</strong> o <strong class="text-gray-800 break-all">813-858-9193</strong></p>
+                        </div>
+                        
+                        <!-- Cash App (UPDATED with link and specific Cashtag in Spanish) -->
+                        <div class="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="text-lg font-semibold text-pink-600 flex items-center mb-1"><i data-lucide="credit-card" class="w-5 h-5 mr-2"></i> Cash App</p>
+                            <p class="text-sm text-gray-700">Cashtag: <strong class="text-gray-800 break-all">$TeeRizzley0</strong></p>
+                            <a href="https://cash.app/$TeeRizzley0" target="_blank" class="mt-2 inline-block px-4 py-2 bg-green-500 text-white font-bold text-sm rounded-lg hover:bg-green-600 transition">
+                                Enviar Vía Cash App
+                            </a>
+                        </div>
+                        
+                        <!-- ATH Móvil Section (Spanish) -->
+                        <div class="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="text-lg font-semibold text-pink-600 flex items-center mb-1"><i data-lucide="wallet" class="w-5 h-5 mr-2"></i> ATH Móvil</p>
+                            <p class="text-sm text-gray-700">Transferir a Teléfono: <strong class="text-gray-800 break-all">939-330-7158</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-xs text-red-500 mt-1 text-center">❗ Si usa Zelle, Cash App, o ATH Móvil, por favor confirme que el nombre del destinatario coincida con "Jaesel" o "Brandon" antes de enviar.</p>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="p-4 text-center bg-gray-900 text-white text-sm">
+        <p>&copy; 2024 Jaesel & Brandon. We can't wait to celebrate with you!</p>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Global State for Language
+        let currentLang = 'en';
+
+        // 1. Countdown Logic
+        const weddingDate = new Date("October 19, 2026 00:00:00").getTime();
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the elements
+            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+            // If the countdown is finished, write some text
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "<p class='text-2xl font-bold font-display'>We Are Married!</p>";
+            }
+        };
+
+        // Update the countdown every 1 second
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        // Run once immediately so there's no delay on load
+        updateCountdown(); 
+
+
+        // 2. Language Toggling Logic
+        const langEnToggle = document.getElementById('lang-en-toggle');
+        const langEsToggle = document.getElementById('lang-es-toggle');
+        
+        // Content Containers
+        const fundEn = document.getElementById('fund-en');
+        const fundEs = document.getElementById('fund-es');
+        const rulesEn = document.getElementById('rules-en');
+        const rulesEs = document.getElementById('rules-es');
+
+        // New containers for Hero Section
+        const heroTitleEn = document.getElementById('hero-title-en');
+        const heroTitleEs = document.getElementById('hero-title-es');
+        const countdownLabelEn = document.getElementById('countdown-label-en');
+        const countdownLabelEs = document.getElementById('countdown-label-es');
+        const daysEn = document.getElementById('days-en');
+        const daysEs = document.getElementById('days-es');
+        const hoursEn = document.getElementById('hours-en');
+        const hoursEs = document.getElementById('hours-es');
+        const minutesEn = document.getElementById('minutes-en');
+        const minutesEs = document.getElementById('minutes-es');
+        const secondsEn = document.getElementById('seconds-en');
+        const secondsEs = document.getElementById('seconds-es');
+        const dateEn = document.getElementById('date-en');
+        const dateEs = document.getElementById('date-es');
+
+        // New containers for Venue Section
+        const venueTitleEn = document.getElementById('venue-title-en');
+        const venueTitleEs = document.getElementById('venue-title-es');
+        const locationTitleEn = document.getElementById('location-title-en');
+        const locationTitleEs = document.getElementById('location-title-es');
+        const timeTitleEn = document.getElementById('time-title-en');
+        const timeTitleEs = document.getElementById('time-title-es');
+        const cocktailEn = document.getElementById('cocktail-en');
+        const cocktailEs = document.getElementById('cocktail-es');
+        const rsvpEn = document.getElementById('rsvp-en');
+        const rsvpEs = document.getElementById('rsvp-es');
+        const rulesTitleEn = document.getElementById('rules-title-en');
+        const rulesTitleEs = document.getElementById('rules-title-es');
+
+
+        // Function to switch language visibility
+        const switchLanguage = (lang) => {
+            currentLang = lang;
+            const isEn = lang === 'en';
+            
+            // Toggle Main Content Sections (Fund/Rules)
+            fundEn.classList.toggle('hidden', !isEn);
+            fundEs.classList.toggle('hidden', isEs);
+            rulesEn.classList.toggle('hidden', !isEn);
+            rulesEs.classList.toggle('hidden', isEs);
+            
+            // Toggle Hero Content
+            heroTitleEn.classList.toggle('hidden', !isEn);
+            heroTitleEs.classList.toggle('hidden', isEs);
+            countdownLabelEn.classList.toggle('hidden', !isEn);
+            countdownLabelEs.classList.toggle('hidden', isEs);
+            daysEn.classList.toggle('hidden', !isEn);
+            daysEs.classList.toggle('hidden', isEs);
+            hoursEn.classList.toggle('hidden', !isEn);
+            hoursEs.classList.toggle('hidden', isEs);
+            minutesEn.classList.toggle('hidden', !isEn);
+            minutesEs.classList.toggle('hidden', isEs);
+            secondsEn.classList.toggle('hidden', !isEn);
+            secondsEs.classList.toggle('hidden', isEs);
+            dateEn.classList.toggle('hidden', !isEn);
+            dateEs.classList.toggle('hidden', isEs);
+
+            // Toggle Venue Content
+            venueTitleEn.classList.toggle('hidden', !isEn);
+            venueTitleEs.classList.toggle('hidden', isEs);
+            locationTitleEn.classList.toggle('hidden', !isEn);
+            locationTitleEs.classList.toggle('hidden', isEs);
+            timeTitleEn.classList.toggle('hidden', !isEn);
+            timeTitleEs.classList.toggle('hidden', isEs);
+            cocktailEn.classList.toggle('hidden', !isEn);
+            cocktailEs.classList.toggle('hidden', isEs);
+            rsvpEn.classList.toggle('hidden', !isEn);
+            rsvpEs.classList.toggle('hidden', isEs);
+            rulesTitleEn.classList.toggle('hidden', !isEn);
+            rulesTitleEs.classList.toggle('hidden', isEs);
+
+
+            // Toggle toggle button styling
+            langEnToggle.classList.toggle('bg-pink-600', isEn);
+            langEnToggle.classList.toggle('text-white', isEn);
+            langEnToggle.classList.toggle('bg-gray-300', !isEn);
+            langEnToggle.classList.toggle('text-gray-800', !isEn);
+
+            langEsToggle.classList.toggle('bg-pink-600', !isEn);
+            langEsToggle.classList.toggle('text-white', !isEn);
+            langEsToggle.classList.toggle('bg-gray-300', isEn);
+            langEsToggle.classList.toggle('text-gray-800', isEs);
+        };
+
+        // Language Toggle Listeners
+        langEnToggle.addEventListener('click', () => switchLanguage('en'));
+        langEsToggle.addEventListener('click', () => switchLanguage('es'));
+
+
+        // Initialize language
+        switchLanguage('en'); 
+    </script>
+</body>
+</html>
